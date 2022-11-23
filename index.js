@@ -3,3 +3,11 @@ function hello(){
 }
 
 hello();
+
+let hell = "Hello!";
+
+returnHell = () =>{
+    console.log(hell);
+}
+
+returnHell();
