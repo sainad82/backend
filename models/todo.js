@@ -18,14 +18,17 @@ module.exports = (sequelize, DataTypes) => {
 
       console.log("Overdue");
       // FILL IN HERE
+      await this.overdue();
       console.log("\n");
 
       console.log("Due Today");
       // FILL IN HERE
+      await this.dueToday();
       console.log("\n");
 
       console.log("Due Later");
       // FILL IN HERE
+      await this.dueLater();
     }
 
     static async overdue() {
