@@ -18,10 +18,7 @@ describe("Todolist Test Suite", () => {
   });
 });
 
-
-
 //
-
 
 // const todoList = require('../todo_closure')
 
@@ -55,20 +52,20 @@ describe("Todolist Test Suite", () => {
 //       if(element.dueDate==yesterday){
 //         expect(element.dueDate).toBe(yesterday)
 //       }
-//     }); 
+//     });
 //   })
 //   test('checking due today elements', () => {
 //     all.forEach(element => {
 //       if(element.dueDate==today){
 //         expect(element.dueDate).toBe(today)
 //       }
-//     }); 
+//     });
 //   })
 //   test('checking due Later elements', () => {
 //     all.forEach(element => {
 //       if(element.dueDate==tomorrow){
 //         expect(element.dueDate).toBe(tomorrow)
 //       }
-//     }); 
+//     });
 //   })
 // })

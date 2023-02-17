@@ -1,8 +1,6 @@
 /* eslint-disable no-unused-vars */
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Todo extends Model {
     /**
@@ -33,15 +31,17 @@ module.exports = (sequelize, DataTypes) => {
 
     static async overdue() {
       // FILL IN HERE TO RETURN OVERDUE ITEMS
-      
+
       var pastDate = new Date(Date.now() - 864e5);
       const duedate = pastDate.toISOString().split("T")[0];
       const overdueTodoList = await Todo.findAll({
-        where:{
-          dueDate : duedate
-        }
+        where: {
+          dueDate: duedate,
+        },
       });
-      const overdueTodos = overdueTodoList.map((eachTodo) => eachTodo.displayableString().join("\n"));
+      const overdueTodos = overdueTodoList.map((eachTodo) =>
+        eachTodo.displayableString().join("\n")
+      );
       console.log(overdueTodos);
     }
 
@@ -50,33 +50,36 @@ module.exports = (sequelize, DataTypes) => {
       var presentDate = new Date();
       const duedate = presentDate.toISOString().split("T")[0];
       const duetodayTodoList = await Todo.findAll({
-        where:{
-          dueDate : duedate
-        }
+        where: {
+          dueDate: duedate,
+        },
       });
-      const duetodayTodos = duetodayTodoList.map((eachTodo) => eachTodo.displayableString().join("\n"));
+      const duetodayTodos = duetodayTodoList.map((eachTodo) =>
+        eachTodo.displayableString().join("\n")
+      );
       console.log(duetodayTodos);
-
     }
 
     static async dueLater() {
       // FILL IN HERE TO RETURN ITEMS DUE LATER
       var presentDate = new Date();
-      presentDate.setDate(presentDate.getDate()+1);
+      presentDate.setDate(presentDate.getDate() + 1);
       var duedate = presentDate.toISOString().split("T")[0];
       const duetomorrowTodoList = await Todo.findAll({
-        where:{
-          dueDate : duedate
-        }
+        where: {
+          dueDate: duedate,
+        },
       });
-      const duetomorrowTodos = duetomorrowTodoList.map((eachTodo) => eachTodo.displayableString().join("\n"));
+      const duetomorrowTodos = duetomorrowTodoList.map((eachTodo) =>
+        eachTodo.displayableString().join("\n")
+      );
       console.log(duetomorrowTodos);
     }
 
     static async markAsComplete(id) {
       // FILL IN HERE TO MARK AN ITEM AS COMPLETE
       const todo = await Todo.update(
-        {completed:true},
+        { completed: true },
         {
           where: {
             id: id,
@@ -84,7 +87,6 @@ module.exports = (sequelize, DataTypes) => {
         }
       );
       console.log(todo.displayableString());
-
     }
 
     static associate(models) {
@@ -95,13 +97,16 @@ module.exports = (sequelize, DataTypes) => {
       return `${this.id}. ${checkbox} ${this.title} ${this.dueDate}`;
     }
   }
-  Todo.init({
-    title: DataTypes.STRING,
-    dueDate: DataTypes.DATEONLY,
-    completed: DataTypes.BOOLEAN
-  }, {
-    sequelize,
-    modelName: 'Todo',
-  });
+  Todo.init(
+    {
+      title: DataTypes.STRING,
+      dueDate: DataTypes.DATEONLY,
+      completed: DataTypes.BOOLEAN,
+    },
+    {
+      sequelize,
+      modelName: "Todo",
+    }
+  );
   return Todo;
 };

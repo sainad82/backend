@@ -29,14 +29,14 @@ const totalData = async () => {
   try {
     const tableData = await Todo.findAll({
       where: {
-        completed:false,
+        completed: false,
       },
-      order: [
-        ['id','ASC']
-      ]
-    })
+      order: [["id", "ASC"]],
+    });
 
-    const todoList = tableData.map((todo) => todo.displayableString()).join("\n");
+    const todoList = tableData
+      .map((todo) => todo.displayableString())
+      .join("\n");
     console.log(`${todoList}.`);
   } catch (error) {
     console.error(error);
@@ -53,45 +53,41 @@ const getSingleTodo = async () => {
     });
 
     console.log(todo.displayableString());
-  }catch (error) {
+  } catch (error) {
     console.error(error);
   }
 };
 
-const updateItem = async(id) => {
+const updateItem = async (id) => {
   try {
     const todo = await Todo.update(
-      {completed:true},
+      { completed: true },
       {
         where: {
           id: id,
         },
       }
     );
-
-    
   } catch (error) {
     console.error(error);
   }
 };
 
-const deleteItem = async(id) => {
-  try{
+const deleteItem = async (id) => {
+  try {
     const deleteRow = await Todo.destroy({
-      where:{
-        id : id
-      }
+      where: {
+        id: id,
+      },
     });
     console.log(`Deleted ${deleteRow} row`);
-  }catch (error){
+  } catch (error) {
     console.error(error);
   }
-}
+};
 
 (async () => {
   await totalData();
   await updateItem(8);
   await totalData();
 })();
-
-
